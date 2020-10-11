@@ -5,10 +5,10 @@ using System.Web;
 
 namespace TeamSignificance.Models
 {
-    public class User
+    public class UserReport
     {
         public int Id { get; set; }
-        public string Nickname { get; set; }
-        public string Password { get; set; }
+        public User From { get; set; }
+        public List<Report> Reports { get; set; }
     }
 }

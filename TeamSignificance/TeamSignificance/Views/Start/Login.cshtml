@@ -1,0 +1,28 @@
+﻿@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="centered flex">
+        <div>
+            <div>
+                <h3>Nickname:</h3>
+                <div>
+                    @Html.TextBox("Nickname", null, new { @class = "field" })
+                </div>
+            </div>
+
+            <div>
+                <h3>Password:</h3>
+                <div>
+                    @Html.Password("Password", null, new { @class = "field" })
+                </div>
+            </div>
+
+            <div class="buttons centered">
+                <input type="submit" value="Login" />
+            </div>
+        </div>
+        <div class="validation-errors">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+}

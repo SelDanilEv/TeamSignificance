@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TeamSignificance.Context;
 using TeamSignificance.Models;
 
 namespace TeamSignificance.Controllers
@@ -11,12 +12,14 @@ namespace TeamSignificance.Controllers
     {
         #region Temp
         Storage storage = Storage.GetStorage();
+        RoomContext db = new RoomContext();
         #endregion
 
         #region Standart
         public ActionResult Index()
         {
-            return View();
+            User user = Session["currentUser"] as User;
+            return View(user);
         }
 
         public ActionResult About()
@@ -72,7 +75,7 @@ namespace TeamSignificance.Controllers
         // GET: Home/Create
         public ActionResult Create(FormCollection collection)
         {
-            if(collection.Count == 0)
+            if (collection.Count == 0)
             {
                 return View();
             }
@@ -81,8 +84,7 @@ namespace TeamSignificance.Controllers
                 Room room = new Room()
                 {
                     Id = (new Random()).Next(0, int.MaxValue),
-                    Name = collection["Name"],
-                    Users = new List<User>()
+                    Name = collection["Name"]
                 };
                 storage.Rooms.Add(room);
                 return RedirectToAction("List");
