@@ -1,9 +1,17 @@
-﻿<div class="centered flex header">
-    <div class="flex_item">@Html.ActionLink("List", "List", "Home")</div>
-    <div class="flex_item">@Html.ActionLink("Dynamic bind", "Dynamic", "Test", new { area = "Test" }, null)</div>
-    <div class="flex_item">@Html.ActionLink("Static bind", "Static", "Test", new { area = "Test" }, null)</div>
-    <div class="flex_item">@Html.ActionLink("Home page", "Index", "Home")</div>
-    <div class="flex_item">@Html.ActionLink("Info", "About", "Home")</div>
-    <div class="flex_item">@Html.ActionLink("Contact me", "Contact", "Home")</div>
+﻿<div class="centered header">
+    <div class="flex_item">@Html.ActionLink("Create room", "CreateRoom", "Home")</div>
+    <div class="flex_item">@Html.ActionLink("Find room", "FindRoom", "Home")</div>
+    <div class="flex_item">@Html.ActionLink("Show rooms", "ShowRoomList", "Home")</div>
+    @{
+        var user = Session["currentUser"] as TeamSignificance.Models.User;
+        if (user == null)
+        {
+            Response.Redirect("~/Start/Login");
+        }
+        else
+        {
+            <div class="flex_item">@Html.Label(user.Nickname)</div>
+        }
+    }
+    <div class="flex_item">@Html.ActionLink("Log out", "Logout", "Home")</div>
 </div>
-

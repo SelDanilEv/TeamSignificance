@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "TeamSignificance.Context.RoomContext";
         }
 
         protected override void Seed(TeamSignificance.Context.RoomContext context)

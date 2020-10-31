@@ -9,11 +9,16 @@ namespace TeamSignificance.Models
 {
     public class Room
     {
+        public Room()
+        {
+            Users = new List<User>();
+            Reports = new List<UserReport>();
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public User Admin { get; set; }
-        public List<User> Users{ get; set; }
-        public List<UserReport> Reports { get; set; }
+        public virtual ICollection<User> Users{ get; set; }
+        public virtual ICollection<UserReport> Reports { get; set; }
 
         [NotMapped]
         public int Participants => Users.Count();

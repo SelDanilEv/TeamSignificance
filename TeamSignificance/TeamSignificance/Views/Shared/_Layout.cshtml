@@ -5,26 +5,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="./Content/MainStyle.css" rel="stylesheet" runat="server" type="text/css" />
+    <link href="@Url.Content("~/Content/MainStyle.css")" rel="stylesheet" type="text/css" />
+    @*<link href="@Url.Content("~/Content/nullstyle.css")" rel="stylesheet" type="text/css" />*@
+    @RenderSection("Styles", false)
 </head>
 <body>
-    @{
-        string CurrentName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
-        switch (CurrentName)
-        {
-            case "Start":
-                Html.RenderPartial("_HeaderStart");
-                break;
-            default:
-                Html.RenderPartial("_Header");
-                break;
-        }
-    }
-    <div class="container body-content">
-        @RenderBody()
-        @{Html.RenderPartial("_Footer");}
+    <div class="main-wrapper">
+        <div class="container body-content">
+            @{
+                string CurrentName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
+                switch (CurrentName)
+                {
+                    case "Start":
+                        Html.RenderPartial("_HeaderStart");
+                        break;
+                    default:
+                        Html.RenderPartial("_Header");
+                        break;
+                }
+            }
+            @RenderBody()
+        </div>
+        <div class="footer-content">
+            @{Html.RenderPartial("_Footer");}
+        </div>
     </div>
-@*    @Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/jquery")*@
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @*@RenderSection("scripts", required: false)*@
 </body>

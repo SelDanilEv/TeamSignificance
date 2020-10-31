@@ -54,8 +54,8 @@ namespace TeamSignificance.Controllers
 
             if (ModelState.IsValid)
             {
-                Session["currentUser"] = targerUser;
-                return RedirectToAction("Index","Home");
+                Session.Add("currentUser", targerUser);
+                return RedirectToAction("Index", "Home");
             }
             return View(user);
 
@@ -75,6 +75,8 @@ namespace TeamSignificance.Controllers
                 Nickname = user["Nickname"],
                 Password = user["Password"]
             };
+
+            user.Add("key", "value");
 
             RoomContext db = new RoomContext();
 
